@@ -1,0 +1,54 @@
+package com.wjp.wojbackendcommon.model.dto.question;
+
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * 更新请求【管理员】
+ *
+ * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
+ * @from <a href="https://wjp.icu">编程导航知识星球</a>
+ */
+@Data
+public class QuestionUpdateRequest implements Serializable {
+
+    /**
+     * id
+     */
+    private long id;
+    /**
+     * 标题
+     */
+    private String title;
+
+    /**
+     * 内容
+     */
+    private String content;
+
+    /**
+     * 标签列表（json 数组）
+     */
+    private List<String> tags;
+
+    /**
+     * 题目答案
+     */
+    private String answer;
+
+    /**
+     * 题目用例(json 数组)
+     */
+    private List<JudgeCase> judgeCase;
+
+
+    /**
+     * 判题配置(json 数组)
+     */
+    private JudgeConfig judgeConfig;
+
+
+    private static final long serialVersionUID = 1L;
+}

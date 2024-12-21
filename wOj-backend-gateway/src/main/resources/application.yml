@@ -1,0 +1,46 @@
+spring:
+  # nacos注册中心配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    # gateway网关配置
+    gateway:
+      routes:
+        - id: wOj-backend-user-service
+          uri: lb://wOj-backend-user-service
+          predicates:
+            - Path=/api/user/**
+        - id: wOj-backend-question-service
+          uri: lb://wOj-backend-question-service
+          predicates:
+            - Path=/api/question/**
+        - id: wOj-backend-judge-service
+          uri: lb://wOj-backend-judge-service
+          predicates:
+            - Path=/api/judge/**
+        - id: wOj-backend-enums-service
+          uri: lb://wOj-backend-enums-service
+          predicates:
+            - Path=/api/enums/**
+  # 配置文件配置
+  application:
+    name: wOj-backend-gateway
+  # 指定应用程序使用响应式编程模型，而非传统的阻塞式模型。
+  main:
+    web-application-type: reactive
+# 端口号配置
+server:
+  port: 8101
+knife4j:
+  gateway:
+    # ① 第一个配置，开启gateway聚合组件
+    enabled: true
+    # ② 第二行配置，设置聚合模式采用discover服务发现的模式
+    strategy: discover
+    discover:
+      # ③ 第三行配置，开启discover模式
+      enabled: true
+      # ④ 第四行配置，聚合子服务全部为Swagger2规范的文档
+      version: swagger2
+
